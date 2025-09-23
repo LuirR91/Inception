@@ -11,7 +11,7 @@ down:
 	docker compose -f ./srcs/docker-compose.yml down --rmi all -v
 	sudo rm -rf /home/$(USER)/data/$(USER)$(DOMAIN_SUFFIX)
 
-recreate: down up
+re: down up
 
 stop:
 	docker compose -f ./srcs/docker-compose.yml stop
