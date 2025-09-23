@@ -21,3 +21,12 @@ start:
 
 status:
 	docker ps
+
+mariadb:
+	sudo docker exec -it mariadb bash
+
+nginx:
+	sudo docker exec -it nginx bash
+
+wordpress:
+	sudo docker exec -it wordpress bash
