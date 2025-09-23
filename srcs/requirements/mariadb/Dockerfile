@@ -1,10 +1,10 @@
 FROM debian:bookworm
 
-RUN apt update && \
-    apt upgrade -y && \
-    apt install mariadb-server -y
+RUN apt update -y && \
+	apt upgrade -y && \
+	apt install -y mariadb-server
 
 COPY ./tools/script.sh /
 RUN chmod +x /script.sh
 
-ENTRYPOINT ["/script.sh"]
+ENTRYPOINT [ "/script.sh" ]

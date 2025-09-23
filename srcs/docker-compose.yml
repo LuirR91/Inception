@@ -1,15 +1,14 @@
-# NETWORKS
+
 networks:
 
   42net:
     name: ${USER}${DOMAIN_SUFFIX}
     driver: bridge
 
-# VOLUMES
 volumes:
 
   mariadb:
-    name: mariabd
+    name: mariadb
     driver: local
     driver_opts:
       device: /home/${USER}/data/${USER}${DOMAIN_SUFFIX}/mariadb
@@ -24,7 +23,6 @@ volumes:
       o: bind
       type: none
 
-# SERVICES
 services:
 
   mariadb:
@@ -39,7 +37,7 @@ services:
     expose:
       - "3306"
     restart: always
-  
+
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress/.
@@ -54,7 +52,7 @@ services:
     depends_on:
       - mariadb
     restart: always
-  
+
   nginx:
     container_name: nginx
     build: ./requirements/nginx/.
