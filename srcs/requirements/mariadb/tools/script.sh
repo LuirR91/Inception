@@ -1,7 +1,5 @@
 #!/bin/bash
 DOMAIN="$USER$DOMAIN_SUFFIX"
-#! change password to be in txt file not in env
-#* Ex.: DB_USER_PASSWORD=$(cat ../../../secrets/DB_USER_PASSWORD.txt)
 
 echo "Starting and Configuring Mariadb ..."
 service mariadb start > /dev/null

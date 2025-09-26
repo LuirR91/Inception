@@ -30,27 +30,12 @@ if [ ! -f "$MARKER" ]; then
         --dbpass="$DB_USER_PASSWORD" \
         --dbhost=mariadb
 
-    wp core install --skip-email --allow-root \
+    wp core install --allow-root \
         --url="$SITE_URL" \
         --title="$WP_TITLE" \
         --admin_user="$WP_ADMIN_USER" \
         --admin_password="$WP_ADMIN_PASSWORD" \
         --admin_email="$WP_ADMIN_EMAIL"
-
-    # Create extra author only if it doesn't exist and email isn't taken
-    if ! wp user get "$USER" --allow-root >/dev/null 2>&1; then
-        ADMIN_EMAIL=$(wp user get "$WP_ADMIN_USER" --field=user_email --allow-root)
-        if [ "$ADMIN_EMAIL" != "$USER_EMAIL" ]; then
-            wp user create --role=author --allow-root \
-                --user_pass="$WP_USER_PASSWORD" \
-                "$USER" \
-                "$USER_EMAIL"
-        else
-            echo "Skipping extra user: $USER_EMAIL already used by admin."
-        fi
-    else
-        echo "User '$USER' already exists. Skipping creation."
-    fi
 
     touch "$MARKER"
 fi
